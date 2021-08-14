@@ -35,7 +35,11 @@ const config: Configuration = {
     ],
   },
   resolve: {
-    extensions: [".tsx", ".ts", ".js"],
+    extensions: ["", ".tsx", ".ts", ".js"],
+    alias: {
+      'IMAGES': path.resolve(__dirname, 'assets', 'images'),
+      '@': path.resolve(__dirname, 'src')
+    },
   },
   plugins: [
     new HtmlWebpackPlugin({
