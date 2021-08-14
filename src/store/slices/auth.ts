@@ -82,7 +82,7 @@ const slice = createSlice({
 
 export const {reducer} = slice;
 
-export const login = (username: string, password: string): AppThunk => dispatch => {
+export const login = (username: string, password: string): AppThunk<Promise<void>> => dispatch => {
   dispatch(slice.actions.loginStart());
 
   return api.login(username, password).then(

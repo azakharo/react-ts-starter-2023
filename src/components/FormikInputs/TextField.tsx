@@ -5,6 +5,8 @@ import BaseTextField from 'src/components/TextField';
 
 interface Props {
   name: string,
+  label?: string,
+  type?: string,
 }
 
 const TextField = ({name, ...restProps}: Props) => {
