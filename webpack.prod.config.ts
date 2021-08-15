@@ -29,12 +29,16 @@ const config: webpack.Configuration = {
           },
         },
       },
+      {
+        test: /\.(png|jpg|jpeg|gif)$/i,
+        type: 'asset/resource',
+      },
     ],
   },
   resolve: {
     extensions: ["", ".tsx", ".ts", ".js"],
     alias: {
-      'IMAGES': path.resolve(__dirname, 'assets', 'images'),
+      'IMAGES': path.resolve(__dirname, 'src', 'assets', 'images'),
       '@': path.resolve(__dirname, 'src')
     },
   },

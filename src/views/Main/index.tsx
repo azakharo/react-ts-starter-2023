@@ -2,7 +2,7 @@ import React, {useCallback, memo} from 'react';
 import {Button, makeStyles, createStyles} from '@material-ui/core';
 import {CSSProperties} from "@material-ui/styles";
 
-// import errorImg from 'IMAGES/error-page-icon.png';
+import errorImg from 'IMAGES/error-page-icon.png';
 import {logout, selectUsername} from '@/store/slices/auth';
 import {useAppDispatch, useAppSelector} from '@/hooks/redux';
 
@@ -83,7 +83,7 @@ const Main = () => {
   return (
     <div className={classes.container}>
       <header className={classes.header}>
-        {/*<img className={classes.logo} src={errorImg} alt="logo" />*/}
+        <img className={classes.logo} src={errorImg} alt="logo" />
         {username && (
           <span className={classes.greeting}>
             <span>Hello </span>
