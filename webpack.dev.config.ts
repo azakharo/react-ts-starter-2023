@@ -6,6 +6,8 @@ import ESLintPlugin from "eslint-webpack-plugin";
 import { Configuration as WebpackConfiguration } from "webpack";
 import { Configuration as WebpackDevServerConfiguration } from "webpack-dev-server";
 
+const PATH_IMAGES = path.resolve(__dirname, 'src', 'assets', 'images');
+
 interface Configuration extends WebpackConfiguration {
   devServer?: WebpackDevServerConfiguration;
 }
@@ -41,13 +43,14 @@ const config: Configuration = {
   resolve: {
     extensions: ["", ".tsx", ".ts", ".js"],
     alias: {
-      'IMAGES': path.resolve(__dirname, 'src', 'assets', 'images'),
+      'IMAGES': PATH_IMAGES,
       '@': path.resolve(__dirname, 'src')
     },
   },
   plugins: [
     new HtmlWebpackPlugin({
       template: "src/index.html",
+      favicon: path.join(PATH_IMAGES, 'favicon.ico'),
     }),
     new webpack.HotModuleReplacementPlugin(),
     new ForkTsCheckerWebpackPlugin({

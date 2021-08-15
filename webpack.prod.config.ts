@@ -4,6 +4,8 @@ import HtmlWebpackPlugin from "html-webpack-plugin";
 import ForkTsCheckerWebpackPlugin from "fork-ts-checker-webpack-plugin";
 import ESLintPlugin from "eslint-webpack-plugin";
 
+const PATH_IMAGES = path.resolve(__dirname, 'src', 'assets', 'images');
+
 const config: webpack.Configuration = {
   mode: "production",
   entry: "./src/index.tsx",
@@ -38,13 +40,14 @@ const config: webpack.Configuration = {
   resolve: {
     extensions: ["", ".tsx", ".ts", ".js"],
     alias: {
-      'IMAGES': path.resolve(__dirname, 'src', 'assets', 'images'),
+      'IMAGES': PATH_IMAGES,
       '@': path.resolve(__dirname, 'src')
     },
   },
   plugins: [
     new HtmlWebpackPlugin({
       template: "src/index.html",
+      favicon: path.join(PATH_IMAGES, 'favicon.ico'),
     }),
     new ForkTsCheckerWebpackPlugin({
       async: false,
