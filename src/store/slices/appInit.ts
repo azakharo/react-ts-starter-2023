@@ -32,6 +32,6 @@ export const {reducer} = slice;
 
 export const init = (): AppThunk => dispatch => dispatch(slice.actions.init());
 
-//export const uninit = (): AppThunk => dispatch => dispatch(slice.actions.uninit());
+export const uninit = (): AppThunk => dispatch => dispatch(slice.actions.uninit());
 
-//export default slice;
+export default slice;
