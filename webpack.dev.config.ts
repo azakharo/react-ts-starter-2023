@@ -41,7 +41,7 @@ const config: Configuration = {
     ],
   },
   resolve: {
-    extensions: ["", ".tsx", ".ts", ".js"],
+    extensions: [".tsx", ".ts", ".js"],
     alias: {
       'IMAGES': PATH_IMAGES,
       '@': path.resolve(__dirname, 'src')
