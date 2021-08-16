@@ -1,64 +1,22 @@
-import path from "path";
 import webpack from "webpack";
-import HtmlWebpackPlugin from "html-webpack-plugin";
-import ForkTsCheckerWebpackPlugin from "fork-ts-checker-webpack-plugin";
-import ESLintPlugin from "eslint-webpack-plugin";
 import { Configuration as WebpackConfiguration } from "webpack";
 import { Configuration as WebpackDevServerConfiguration } from "webpack-dev-server";
+import merge from "webpack-merge";
 
-import {imagesDir, outDir} from './build-constants';
+import {outDir} from './build-constants';
+import commonConfig from './webpack.common.config';
 
 interface Configuration extends WebpackConfiguration {
   devServer?: WebpackDevServerConfiguration;
 }
 
-const config: Configuration = {
+const devSpecificConfig: Configuration = {
   mode: "development",
   output: {
     publicPath: "/",
   },
-  entry: "./src/index.tsx",
-  module: {
-    rules: [
-      {
-        test: /\.(ts|js)x?$/i,
-        exclude: /node_modules/,
-        use: {
-          loader: "babel-loader",
-          options: {
-            presets: [
-              "@babel/preset-env",
-              "@babel/preset-react",
-              "@babel/preset-typescript",
-            ],
-          },
-        },
-      },
-      {
-        test: /\.(png|jpg|jpeg|gif)$/i,
-        type: 'asset/resource',
-      },
-    ],
-  },
-  resolve: {
-    extensions: [".tsx", ".ts", ".js"],
-    alias: {
-      'IMAGES': imagesDir,
-      '@': path.resolve(__dirname, 'src')
-    },
-  },
   plugins: [
-    new HtmlWebpackPlugin({
-      template: "src/index.html",
-      favicon: path.join(imagesDir, 'favicon.ico'),
-    }),
     new webpack.HotModuleReplacementPlugin(),
-    new ForkTsCheckerWebpackPlugin({
-      async: false,
-    }),
-    new ESLintPlugin({
-      extensions: ["js", "jsx", "ts", "tsx"],
-    }),
   ],
   devtool: "inline-source-map",
   devServer: {
@@ -69,5 +27,7 @@ const config: Configuration = {
     hot: true,
   },
 };
+
+const config: Configuration = merge(commonConfig, devSpecificConfig);
 
 export default config;
