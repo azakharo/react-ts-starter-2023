@@ -1,7 +1,8 @@
-import axios, {CancelTokenSource} from 'axios';
+import axios, {CancelTokenSource, AxiosError} from 'axios';
 
 const BASE_URL = 'https://reqres.in';
 
+// eslint-disable-next-line unicorn/no-static-only-class
 export default class ApiService {
   static axi = axios.create();
 
@@ -15,6 +16,7 @@ export default class ApiService {
   static init(unauthCallback: () => void): void {
     // Add a request interceptor
     ApiService.requestInterceptor = ApiService.axi.interceptors.request.use(
+      /* eslint-disable-next-line arrow-body-style */
       config => {
         // const url = config.url;
         //
@@ -33,6 +35,7 @@ export default class ApiService {
 
     // Add a response interceptor
     ApiService.responseInterceptor = ApiService.axi.interceptors.response.use(
+      /* eslint-disable-next-line arrow-body-style */
       response => {
         // if (not authorized here or in the error handler) {
         //   const {data} = response;
@@ -49,8 +52,8 @@ export default class ApiService {
 
         return response;
       },
-      error => {
-        if (error?.response.status === 401) {
+      (error: AxiosError) => {
+        if (error?.response?.status === 401) {
           unauthCallback();
         }
 
@@ -96,16 +99,22 @@ export default class ApiService {
         password,
       });
     } catch (error) {
-      const errorData = error.response.data;
-      const message = errorData.error;
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+      if (error.isAxiosError) {
+        const errorData = (error as AxiosError)?.response?.data as {error: string};
+        const message = errorData?.error;
 
-      throw new Error(message);
+        throw new Error(message);
+      }
+      else {
+        throw error;
+      }
     }
 
     // Get something from the response's data or headers
     // Store it in ApiService if necessary for later usage
 
-    const {token} = response.data;
+    const {token} = response.data as {token: string};
 
     return {
       name: 'alexey',

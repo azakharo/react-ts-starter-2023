@@ -6,7 +6,7 @@ export const load = (key: string): Record<string, unknown> | undefined => {
     if (serializedState === null) {
       return undefined;
     }
-    return JSON.parse(serializedState);
+    return JSON.parse(serializedState) as Record<string, unknown>;
   } catch (err) {
     return undefined;
   }

@@ -5,7 +5,7 @@ import {Switch, Route, Redirect} from 'react-router-dom';
 import {ROUTE__LOGIN, ROUTE__MAIN} from '@/constants/routes';
 import ApiService from '@/services/ApiService';
 import {init, uninit} from '@/store/slices/appInit';
-import {logout} from '@/store/slices/auth';
+import {logout as appLogout} from '@/store/slices/auth';
 import Login from '@/views/Login';
 import Main from '@/views/Main';
 import {RootState} from "@/store";
@@ -15,7 +15,7 @@ const mapStateToProps = (state: RootState) => ({
 });
 
 const mapDispatchToProps = {
-  logout,
+  logout: appLogout,
   appInit: init,
   appUninit: uninit,
 };

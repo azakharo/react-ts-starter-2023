@@ -83,7 +83,7 @@ const Main = () => {
   return (
     <div className={classes.container}>
       <header className={classes.header}>
-        <img className={classes.logo} src={errorImg} alt="logo" />
+        <img className={classes.logo} src={errorImg as string} alt="logo" />
         {username && (
           <span className={classes.greeting}>
             <span>Hello </span>

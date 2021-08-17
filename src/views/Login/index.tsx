@@ -33,18 +33,30 @@ const v8nSchema = Yup.object().shape({
   password: Yup.string().required('required'),
 });
 
+interface FormValues {
+  username: string,
+  password: string,
+}
+
 const Login = () => {
   const classes = useStyles();
   const dispatch = useAppDispatch();
   const isMountedRef = useIsMountedRef();
   const authError = useAppSelector(selectError);
+  const initialValues: FormValues = {
+    username: '',
+    password: '',
+  };
 
   const handleFormSubmit = useCallback(
-    (values, {setSubmitting}) => {
+    (values: FormValues, {setSubmitting}) => {
       const {username, password} = values;
 
+      // Do not need to catch any errors on login - just use finally
+      // eslint-disable-next-line promise/catch-or-return
       dispatch(login(username, password)).finally(() => {
         if (isMountedRef.current) {
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-call
           setSubmitting(false);
         }
       });
@@ -54,10 +66,7 @@ const Login = () => {
 
   return (
     <Formik
-      initialValues={{
-        username: '',
-        password: '',
-      }}
+      initialValues={initialValues}
       validationSchema={v8nSchema}
       onSubmit={handleFormSubmit}
     >

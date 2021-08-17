@@ -8,16 +8,12 @@ interface User {
   name: string,
 }
 
-interface Error {
-  message: string
-}
-
 interface AuthState {
   isInProgress: boolean,
   isAuthenticated: boolean,
   // eslint-disable-next-line @typescript-eslint/ban-types
   user: User | {},
-  error: Error | null,
+  error: string | null,
 }
 
 const initialState: AuthState = {
@@ -31,7 +27,7 @@ const initialState: AuthState = {
 // Selectors
 
 const selectAuth = (wholeState: RootState) => wholeState.auth;
-export const selectError = (state: RootState): Error | null => selectAuth(state).error;
+export const selectError = (state: RootState): string | null => selectAuth(state).error;
 export const selectIsInProgress = (state: RootState): boolean => selectAuth(state).isInProgress;
 export const selectIsAuthenticated = (state: RootState): boolean => selectAuth(state).isAuthenticated;
 // eslint-disable-next-line @typescript-eslint/ban-types
@@ -66,7 +62,7 @@ const slice = createSlice({
         user: action.payload,
       };
     },
-    loginFail(state, action: PayloadAction<Error>) {
+    loginFail(state, action: PayloadAction<string>) {
       return {
         ...initialState,
         error: action.payload,
@@ -86,6 +82,8 @@ export const login = (username: string, password: string): AppThunk<Promise<void
   dispatch(slice.actions.loginStart());
 
   return api.login(username, password).then(
+    // Do not need to return anything from this method
+    // eslint-disable-next-line promise/always-return
     user => {
       saveState({
         auth: {
@@ -97,6 +95,8 @@ export const login = (username: string, password: string): AppThunk<Promise<void
       dispatch(slice.actions.loginSuccess(user));
     },
     error => {
+      // Sure api method returns std error with the message field
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
       dispatch(slice.actions.loginFail(error.message));
     },
   );

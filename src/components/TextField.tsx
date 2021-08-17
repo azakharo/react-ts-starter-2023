@@ -5,6 +5,7 @@ export enum InputType {
   onlyPositive,
 }
 
+/* eslint-disable react/require-default-props */
 interface Props {
   inputType?: InputType,
   name?: string,
@@ -16,6 +17,7 @@ interface Props {
   // eslint-disable-next-line @typescript-eslint/ban-types
   InputProps?: object,
 }
+/* eslint-enable react/require-default-props */
 
 const TextField = ({inputType, InputProps, ...restProps}: Props) => {
   const patchedInputProps = useMemo(() => {
@@ -38,6 +40,7 @@ const TextField = ({inputType, InputProps, ...restProps}: Props) => {
     };
   }, [InputProps, inputType]);
 
+  // eslint-disable-next-line react/jsx-props-no-spreading
   return <BaseTextField InputProps={patchedInputProps} {...restProps} />;
 };
 
