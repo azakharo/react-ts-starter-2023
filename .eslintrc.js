@@ -5,7 +5,7 @@ module.exports = {
     "sourceType": "module",
     project: "./tsconfig.json",
   },
-  ignorePatterns: [".eslintrc.js"],
+  ignorePatterns: ["/*.*"],
   "extends": [
     "airbnb-typescript",
     "plugin:@typescript-eslint/recommended",
