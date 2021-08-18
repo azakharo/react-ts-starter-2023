@@ -4,10 +4,10 @@ import {useFormikContext, getIn} from 'formik';
 import BaseTextField from '@/components/TextField';
 
 interface Props {
-  name: string,
+  name: string;
   /* eslint-disable react/require-default-props */
-  label?: string,
-  type?: string,
+  label?: string;
+  type?: string;
   /* eslint-enable react/require-default-props */
 }
 

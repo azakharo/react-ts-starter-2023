@@ -26,6 +26,7 @@ module.exports = {
     "react",
     "react-hooks",
     "unicorn",
+    "prettier",
   ],
   env: {
     node: true,
@@ -39,6 +40,8 @@ module.exports = {
     }
   },
   "rules": {
+    "prettier/prettier": "error",
+
     // Too restrictive, writing ugly code to defend against a very unlikely scenario: https://eslint.org/docs/rules/no-prototype-builtins
     "no-prototype-builtins": "off",
     // https://stackoverflow.com/a/64024916/286387

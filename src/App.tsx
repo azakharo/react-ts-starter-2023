@@ -9,8 +9,8 @@ import Routes from './Routes';
 const App = (): JSX.Element => (
   <Provider store={store}>
     <Router>
-      <GlobalStyles/>
-      <Routes/>
+      <GlobalStyles />
+      <Routes />
     </Router>
   </Provider>
 );

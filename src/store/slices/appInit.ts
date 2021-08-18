@@ -1,13 +1,13 @@
 import {createSlice} from '@reduxjs/toolkit';
 
-import {AppThunk} from "@/store";
+import {AppThunk} from '@/store';
 
 interface AppInitState {
-  isInitialized: boolean,
+  isInitialized: boolean;
 }
 
 const initialState: AppInitState = {
-  isInitialized: false
+  isInitialized: false,
 };
 
 const slice = createSlice({
@@ -16,14 +16,15 @@ const slice = createSlice({
   reducers: {
     init(state) {
       return {
-        ...state, isInitialized: true
-      }
+        ...state,
+        isInitialized: true,
+      };
     },
     uninit(state) {
       return {
-        ...state, isInitialized: false
-      }
-
+        ...state,
+        isInitialized: false,
+      };
     },
   },
 });
@@ -32,6 +33,7 @@ export const {reducer} = slice;
 
 export const init = (): AppThunk => dispatch => dispatch(slice.actions.init());
 
-export const uninit = (): AppThunk => dispatch => dispatch(slice.actions.uninit());
+export const uninit = (): AppThunk => dispatch =>
+  dispatch(slice.actions.uninit());
 
 export default slice;

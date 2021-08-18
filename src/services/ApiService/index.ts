@@ -87,7 +87,10 @@ export default class ApiService {
   //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
   // Auth
 
-  static async login(username: string, password: string): Promise<{name: string, token: string}> {
+  static async login(
+    username: string,
+    password: string,
+  ): Promise<{name: string; token: string}> {
     let response;
 
     try {
@@ -101,12 +104,13 @@ export default class ApiService {
     } catch (error) {
       // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
       if (error.isAxiosError) {
-        const errorData = (error as AxiosError)?.response?.data as {error: string};
+        const errorData = (error as AxiosError)?.response?.data as {
+          error: string;
+        };
         const message = errorData?.error;
 
         throw new Error(message);
-      }
-      else {
+      } else {
         throw error;
       }
     }

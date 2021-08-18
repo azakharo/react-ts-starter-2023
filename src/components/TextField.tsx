@@ -7,15 +7,15 @@ export enum InputType {
 
 /* eslint-disable react/require-default-props */
 interface Props {
-  inputType?: InputType,
-  name?: string,
-  error?: boolean,
-  helperText?: string,
-  onBlur: (e: FocusEvent) => void,
-  onChange: (e: ChangeEvent) => void,
-  value: string,
+  inputType?: InputType;
+  name?: string;
+  error?: boolean;
+  helperText?: string;
+  onBlur: (e: FocusEvent) => void;
+  onChange: (e: ChangeEvent) => void;
+  value: string;
   // eslint-disable-next-line @typescript-eslint/ban-types
-  InputProps?: object,
+  InputProps?: object;
 }
 /* eslint-enable react/require-default-props */
 

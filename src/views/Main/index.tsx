@@ -1,6 +1,6 @@
 import React, {useCallback, memo} from 'react';
 import {Button, makeStyles, createStyles} from '@material-ui/core';
-import {CSSProperties} from "@material-ui/styles";
+import {CSSProperties} from '@material-ui/styles';
 
 import errorImg from 'IMAGES/error-page-icon.png';
 import {logout, selectUsername} from '@/store/slices/auth';
@@ -17,7 +17,8 @@ const asideMainCommonStyles: CSSProperties = {
   fontWeight: 'bold',
 };
 
-const useStyles = makeStyles(() => createStyles({
+const useStyles = makeStyles(() =>
+  createStyles({
     container: {
       height: '100vh',
       display: 'grid',
@@ -71,10 +72,11 @@ const useStyles = makeStyles(() => createStyles({
       alignItems: 'center',
       padding: '0 16px',
     },
-  }));
+  }),
+);
 
 const Main = () => {
-  const classes  = useStyles();
+  const classes = useStyles();
   const dispatch = useAppDispatch();
   const username = useAppSelector(selectUsername);
 
