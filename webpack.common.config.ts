@@ -47,6 +47,7 @@ const config: Configuration = {
     }),
     new ESLintPlugin({
       extensions: ["js", "jsx", "ts", "tsx"],
+      fix: true,
     }),
   ],
 };
