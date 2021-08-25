@@ -15,6 +15,14 @@ const devSpecificConfig: Configuration = {
   output: {
     publicPath: "/",
   },
+  module: {
+    rules: [
+      {
+        test: /\.css$/i,
+        use: ["style-loader", "css-loader"],
+      },
+    ],
+  },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
   ],
