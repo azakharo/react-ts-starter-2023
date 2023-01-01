@@ -62,6 +62,7 @@ module.exports = {
     "react-hooks/exhaustive-deps": "warn",
     // No jsx extension: https://github.com/facebook/create-react-app/issues/87#issuecomment-234627904
     "react/jsx-filename-extension": "off",
+    'react/jsx-props-no-spreading': 'off',
 
     // Allow most functions to rely on type inference. If the function is exported, then `@typescript-eslint/explicit-module-boundary-types` will ensure it's typed.
     "@typescript-eslint/explicit-function-return-type": "off",
