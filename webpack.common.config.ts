@@ -8,6 +8,9 @@ import {imagesDir, entry} from './build-constants';
 
 const config: Configuration = {
   entry,
+  output: {
+    hashFunction: 'xxhash64',
+  },
   module: {
     rules: [
       {
