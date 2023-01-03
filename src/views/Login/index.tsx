@@ -1,4 +1,4 @@
-import React, {useCallback, memo} from 'react';
+import React, {useCallback, memo, useState} from 'react';
 import {
   Box,
   Button,
@@ -6,13 +6,11 @@ import {
   makeStyles,
   Typography,
 } from '@material-ui/core';
-import {Formik} from 'formik';
+import {Formik, FormikHelpers} from 'formik';
 import * as Yup from 'yup';
 
-import {login, selectError} from '@/store/slices/auth';
 import TextField from '@/components/FormikInputs/TextField';
-import useIsMountedRef from '@/hooks/useIsMountedRef';
-import {useAppDispatch, useAppSelector} from '@/hooks/redux';
+import useAuth from '@/hooks/useAuth';
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -40,28 +38,25 @@ interface FormValues {
 
 const Login = () => {
   const classes = useStyles();
-  const dispatch = useAppDispatch();
-  const isMountedRef = useIsMountedRef();
-  const authError = useAppSelector(selectError);
+  const {login} = useAuth();
+  const [authError, setAuthError] = useState('');
   const initialValues: FormValues = {
     username: '',
     password: '',
   };
 
   const handleFormSubmit = useCallback(
-    (values: FormValues, {setSubmitting}) => {
+    async (values: FormValues, {setSubmitting}: FormikHelpers<FormValues>) => {
       const {username, password} = values;
 
-      // Do not need to catch any errors on login - just use finally
-      // eslint-disable-next-line promise/catch-or-return
-      dispatch(login(username, password)).finally(() => {
-        if (isMountedRef.current) {
-          // eslint-disable-next-line @typescript-eslint/no-unsafe-call
-          setSubmitting(false);
-        }
-      });
+      try {
+        await login(username, password);
+      } catch (e) {
+        setSubmitting(false);
+        setAuthError((e as Error).message);
+      }
     },
-    [dispatch, isMountedRef],
+    [login],
   );
 
   return (

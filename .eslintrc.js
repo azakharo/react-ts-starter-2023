@@ -46,6 +46,8 @@ module.exports = {
     "no-prototype-builtins": "off",
     // https://stackoverflow.com/a/64024916/286387
     "no-use-before-define": "off",
+    // Allow for..of syntax
+    "no-restricted-syntax": ["error", "ForInStatement", "LabeledStatement", "WithStatement"],
 
     // https://basarat.gitbooks.io/typescript/docs/tips/defaultIsBad.html
     "import/prefer-default-export": "off",
@@ -54,6 +56,22 @@ module.exports = {
     "import/no-extraneous-dependencies": "off",
     // TODO set off only for TS and JS modules
     "import/extensions": "off",
+    "import/order": [
+      "error",
+      {
+        "groups": [
+          "builtin",
+          "external",
+          "internal",
+          "unknown",
+          "parent",
+          "sibling",
+          "index",
+          "object",
+          "type"
+        ]
+      }
+    ],
 
     // Too restrictive: https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/destructuring-assignment.md
     "react/destructuring-assignment": "off",
@@ -62,6 +80,7 @@ module.exports = {
     "react-hooks/exhaustive-deps": "warn",
     // No jsx extension: https://github.com/facebook/create-react-app/issues/87#issuecomment-234627904
     "react/jsx-filename-extension": "off",
+    'react/require-default-props': "off",
     'react/jsx-props-no-spreading': 'off',
 
     // Allow most functions to rely on type inference. If the function is exported, then `@typescript-eslint/explicit-module-boundary-types` will ensure it's typed.
@@ -69,6 +88,23 @@ module.exports = {
     "@typescript-eslint/no-use-before-define": [
       "error",
       { functions: false, classes: true, variables: true, typedefs: true },
+    ],
+    // Some variable names are defined in the backend (can't change this).
+    // Also sometimes the following var names are necessary TYPE__TYPE_NAME
+    '@typescript-eslint/naming-convention': [
+      'error',
+      {
+        selector: 'variable',
+        format: null, // disable rule
+      },
+      {
+        selector: 'function',
+        format: ['camelCase'],
+      },
+      {
+        selector: 'typeLike',
+        format: ['PascalCase'],
+      },
     ],
 
     // Common abbreviations are known and readable
@@ -84,8 +120,28 @@ module.exports = {
     "unicorn/consistent-destructuring": "off",
     // Difficult to write redux slices with it
     "unicorn/consistent-function-scoping": "off",
+    "unicorn/prefer-node-protocol": "off",
+
+    // Enable some rules for async JS
+    "no-promise-executor-return": "error",
+    "require-atomic-updates": "error",
+    "max-nested-callbacks": "error",
+    "no-return-await": "error",
   },
   overrides: [
+    {
+      files: [
+        '**/*.test.js',
+        '**/*.test.jsx',
+        '**/*.test.tsx',
+        '**/*.spec.js',
+        '**/*.spec.jsx',
+        '**/*.spec.tsx',
+      ],
+      env: {
+        jest: true,
+      },
+    },
     {
       files: ["*.js"],
       rules: {
@@ -93,5 +149,14 @@ module.exports = {
         "@typescript-eslint/no-var-requires": "off",
       },
     },
-  ],
+    /////////////////////////////////////////////
+    // Integration test may have no any expect()
+    {
+      "files": ["*.spec.tsx", "spec.tsx"],
+      "rules": {
+        "jest/expect-expect": "off"
+      }
+    },
+    /////////////////////////////////////////////
+  ]
 };

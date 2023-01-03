@@ -1,18 +1,18 @@
 import React from 'react';
-import {BrowserRouter as Router} from 'react-router-dom';
-import {Provider} from 'react-redux';
+import {Router} from 'react-router-dom';
 
-import store from '@/store';
+import {AuthProvider} from '@/contexts/AuthContext';
+import history from '@/utils/history';
 import GlobalStyles from '@/components/GlobalStyles';
 import Routes from './Routes';
 
 const App = (): JSX.Element => (
-  <Provider store={store}>
-    <Router>
+  <Router history={history}>
+    <AuthProvider>
       <GlobalStyles />
       <Routes />
-    </Router>
-  </Provider>
+    </AuthProvider>
+  </Router>
 );
 
 export default App;

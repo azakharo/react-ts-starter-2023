@@ -1,10 +1,9 @@
-import React, {useCallback, memo} from 'react';
+import React, {memo} from 'react';
 import {Button, makeStyles, createStyles} from '@material-ui/core';
 import {CSSProperties} from '@material-ui/styles';
 
 import errorImg from 'IMAGES/error-page-icon.png';
-import {logout, selectUsername} from '@/store/slices/auth';
-import {useAppDispatch, useAppSelector} from '@/hooks/redux';
+import useAuth from '@/hooks/useAuth';
 
 const areaColor = '#e2deed';
 
@@ -77,10 +76,8 @@ const useStyles = makeStyles(() =>
 
 const Main = () => {
   const classes = useStyles();
-  const dispatch = useAppDispatch();
-  const username = useAppSelector(selectUsername);
-
-  const handleLogout = useCallback(() => dispatch(logout()), [dispatch]);
+  const {logout, user} = useAuth();
+  const username = user ? user.name : '';
 
   return (
     <div className={classes.container}>
@@ -92,7 +89,7 @@ const Main = () => {
             <span className={classes.username}>{username}</span>
           </span>
         )}
-        <Button variant="contained" color="primary" onClick={handleLogout}>
+        <Button variant="contained" color="primary" onClick={logout}>
           Logout
         </Button>
       </header>

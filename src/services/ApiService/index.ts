@@ -90,7 +90,7 @@ export default class ApiService {
   static async login(
     username: string,
     password: string,
-  ): Promise<{name: string; token: string}> {
+  ): Promise<{id: number; name: string; token: string}> {
     let response;
 
     try {
@@ -121,6 +121,7 @@ export default class ApiService {
     const {token} = response.data as {token: string};
 
     return {
+      id: 1,
       name: 'alexey',
       token,
     };
