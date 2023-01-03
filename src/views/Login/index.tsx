@@ -9,8 +9,8 @@ import {
 import {Formik, FormikHelpers} from 'formik';
 import * as Yup from 'yup';
 
-import TextField from '@/components/FormikInputs/TextField';
-import useAuth from '@/hooks/useAuth';
+import TextField from 'src/components/FormikInputs/TextField';
+import useAuth from 'src/hooks/useAuth';
 
 const useStyles = makeStyles(theme => ({
   container: {

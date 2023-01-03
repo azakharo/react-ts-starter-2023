@@ -3,7 +3,7 @@ import {Button, makeStyles, createStyles} from '@material-ui/core';
 import {CSSProperties} from '@material-ui/styles';
 
 import errorImg from 'IMAGES/error-page-icon.png';
-import useAuth from '@/hooks/useAuth';
+import useAuth from 'src/hooks/useAuth';
 
 const areaColor = '#e2deed';
 

@@ -1,10 +1,10 @@
 import React, {FC} from 'react';
 import {Switch, Route, Redirect} from 'react-router-dom';
 
-import {ROUTE__LOGIN, ROUTE__MAIN} from '@/constants/routes';
-import Login from '@/views/Login';
-import Main from '@/views/Main';
-import useAuth from '@/hooks/useAuth';
+import {ROUTE__LOGIN, ROUTE__MAIN} from 'src/constants/routes';
+import Login from 'src/views/Login';
+import Main from 'src/views/Main';
+import useAuth from 'src/hooks/useAuth';
 
 const Routes: FC = () => {
   const {isAuthenticated} = useAuth();

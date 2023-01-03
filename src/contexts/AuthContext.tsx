@@ -16,10 +16,10 @@ import {
   getUserId as getUserIdFromLocalStorage,
   setUserId as putUserIdToLocalStorage,
   remUserId as remUserIdFromLocalStorage,
-} from '@/helpers/localStorage';
-import UserLoggedIn from '@/types/UserLoggedIn';
-import {ROUTE__LOGIN, ROUTE__MAIN} from '@/constants/routes';
-import ApiService from '@/services/ApiService';
+} from 'src/helpers/localStorage';
+import UserLoggedIn from 'src/types/UserLoggedIn';
+import {ROUTE__LOGIN, ROUTE__MAIN} from 'src/constants/routes';
+import ApiService from 'src/services/ApiService';
 
 export interface AuthState {
   isAuthenticated: boolean;
