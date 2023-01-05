@@ -30,8 +30,9 @@ const TextField = ({inputType, InputProps, ...restProps}: Props) => {
       // case inputTypes.onlyPositive:
       //   inputComponent = PositiveNumber;
       //   break;
-      default:
+      default: {
         inputComponent = undefined;
+      }
     }
 
     return {
