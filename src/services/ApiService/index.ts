@@ -102,9 +102,8 @@ export default class ApiService {
         password,
       });
     } catch (error) {
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-      if (error.isAxiosError) {
-        const errorData = (error as AxiosError)?.response?.data as {
+      if (axios.isAxiosError(error)) {
+        const errorData = error.response?.data as {
           error: string;
         };
         const message = errorData?.error;
