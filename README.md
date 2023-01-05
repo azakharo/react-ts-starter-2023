@@ -1,4 +1,4 @@
-# React.js Typescript application starter 2021
+# React.js Typescript application starter
 
 Usage: create fast prototypes, solve test tasks.
 
@@ -12,7 +12,6 @@ Usage: create fast prototypes, solve test tasks.
 * Production optimized build
 * Client-side routing
 * Material UI toolkit
-* Redux, redux-thunk, redux dev tools configured. State can be saved/restored from localStorage.
 * ApiService for working with a backend. Axios is used.
 * Login and Main page skeletons.
 * Jest configured. The test can be written in Typescript.
