@@ -1,4 +1,3 @@
-import webpack from "webpack";
 import { Configuration as WebpackConfiguration } from "webpack";
 import { Configuration as WebpackDevServerConfiguration } from "webpack-dev-server";
 import merge from "webpack-merge";
@@ -23,12 +22,11 @@ const devSpecificConfig: Configuration = {
       },
     ],
   },
-  plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-  ],
   devtool: "inline-source-map",
   devServer: {
-    contentBase: outDir,
+    static: {
+      directory: outDir,
+    },
     historyApiFallback: true,
     port: 4000,
     open: true,
