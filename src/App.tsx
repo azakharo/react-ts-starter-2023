@@ -5,7 +5,7 @@ import {createTheme} from '@mui/material';
 import {Theme} from '@mui/material/styles';
 
 import {AuthProvider} from 'src/contexts/AuthContext';
-import GlobalStyles from 'src/GlobalStyles';
+import AppGlobalStyles from 'src/AppGlobalStyles';
 import AppRoutes from 'src/AppRoutes';
 
 declare module '@mui/styles/defaultTheme' {
@@ -19,7 +19,7 @@ const App = (): JSX.Element => (
   <ThemeProvider theme={theme}>
     <BrowserRouter>
       <AuthProvider>
-        <GlobalStyles />
+        <AppGlobalStyles />
         <AppRoutes />
       </AuthProvider>
     </BrowserRouter>
