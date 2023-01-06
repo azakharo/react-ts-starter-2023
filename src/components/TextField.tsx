@@ -1,5 +1,5 @@
 import React, {FocusEvent, ChangeEvent, memo, useMemo} from 'react';
-import {TextField as BaseTextField} from '@material-ui/core';
+import {TextField as BaseTextField} from '@mui/material';
 
 export enum InputType {
   onlyPositive,

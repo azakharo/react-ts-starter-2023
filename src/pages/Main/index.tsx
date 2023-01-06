@@ -1,6 +1,8 @@
 import React, {memo} from 'react';
-import {Button, makeStyles, createStyles} from '@material-ui/core';
-import {CSSProperties} from '@material-ui/styles';
+import {Button} from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
+import createStyles from '@mui/styles/createStyles';
+import {CSSProperties} from '@mui/styles';
 
 import errorImg from 'IMAGES/error-page-icon.png';
 import useAuth from 'src/hooks/useAuth';

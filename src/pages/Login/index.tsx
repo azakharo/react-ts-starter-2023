@@ -1,11 +1,6 @@
 import React, {useCallback, memo, useState} from 'react';
-import {
-  Box,
-  Button,
-  FormHelperText,
-  makeStyles,
-  Typography,
-} from '@material-ui/core';
+import {Box, Button, FormHelperText, Typography} from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import {Formik, FormikHelpers} from 'formik';
 import * as Yup from 'yup';
 
