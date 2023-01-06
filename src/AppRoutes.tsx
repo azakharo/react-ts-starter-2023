@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {FC, memo} from 'react';
 import {Routes, Route, Navigate} from 'react-router-dom';
 
 import {ROUTE__LOGIN, ROUTE__MAIN} from 'src/constants/routes';
@@ -26,4 +26,4 @@ const AppRoutes: FC = () => {
   );
 };
 
-export default AppRoutes;
+export default memo(AppRoutes);
