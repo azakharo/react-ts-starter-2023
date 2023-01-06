@@ -7,7 +7,7 @@ import React, {
   useCallback,
   useMemo,
 } from 'react';
-import {useHistory, useLocation} from 'react-router-dom';
+import {useNavigate, useLocation} from 'react-router-dom';
 
 import {
   getAuthToken as getAuthTokenFromLocalStorage,
@@ -109,14 +109,18 @@ const AuthContext = createContext<AuthContextType>({
   logout: () => {},
 });
 
+interface LocationState {
+  returnUrl?: string;
+}
+
 interface Props {
   children: ReactNode;
 }
 
 export const AuthProvider: FC<Props> = ({children}) => {
   const [state, dispatch] = useReducer(reducer, initialAuthState);
-  const history = useHistory();
-  const location = useLocation<{returnUrl?: string}>();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const login = useCallback(
     async (username: string, password: string, redirect = true) => {
@@ -135,22 +139,28 @@ export const AuthProvider: FC<Props> = ({children}) => {
       });
 
       if (redirect) {
-        const returnUrl = location.state?.returnUrl;
-        history.replace(
+        const locationState = location.state as LocationState;
+        const returnUrl = locationState?.returnUrl;
+        navigate(
           returnUrl && !returnUrl.endsWith(ROUTE__LOGIN)
             ? returnUrl
             : ROUTE__MAIN,
+          {
+            replace: true,
+          },
         );
       }
     },
-    [history, location.state?.returnUrl],
+    [navigate, location.state],
   );
 
   const logout = useCallback(() => {
     setSession();
     dispatch({type: ACTION__LOGOUT});
-    history.replace(ROUTE__LOGIN);
-  }, [history]);
+    navigate(ROUTE__LOGIN, {
+      replace: true,
+    });
+  }, [navigate]);
 
   const contextValue = useMemo(
     () => ({
@@ -166,8 +176,10 @@ export const AuthProvider: FC<Props> = ({children}) => {
       ApiService.init(logout);
 
       const redirectToLogin = () => {
-        history.push(ROUTE__LOGIN, {
-          returnUrl: `${location.pathname}${location.search}${location.hash}`,
+        navigate(ROUTE__LOGIN, {
+          state: {
+            returnUrl: `${location.pathname}${location.search}${location.hash}`,
+          },
         });
       };
 
@@ -190,7 +202,7 @@ export const AuthProvider: FC<Props> = ({children}) => {
           });
 
           if (location.pathname === ROUTE__LOGIN) {
-            history.push(ROUTE__MAIN);
+            navigate(ROUTE__MAIN);
           }
         } else {
           redirectToLogin();

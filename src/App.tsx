@@ -1,18 +1,17 @@
 import React from 'react';
-import {Router} from 'react-router-dom';
+import {BrowserRouter} from 'react-router-dom';
 
 import {AuthProvider} from 'src/contexts/AuthContext';
-import history from 'src/utils/history';
 import GlobalStyles from 'src/components/GlobalStyles';
-import Routes from './Routes';
+import AppRoutes from 'src/AppRoutes';
 
 const App = (): JSX.Element => (
-  <Router history={history}>
+  <BrowserRouter>
     <AuthProvider>
       <GlobalStyles />
-      <Routes />
+      <AppRoutes />
     </AuthProvider>
-  </Router>
+  </BrowserRouter>
 );
 
 export default App;
