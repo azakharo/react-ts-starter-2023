@@ -1,6 +1,7 @@
+import React from 'react';
 import GlobalStyles from '@mui/material/GlobalStyles';
 
-const AppGlobalStyles = (): null => {
+const AppGlobalStyles = (): JSX.Element => {
   return (
     <GlobalStyles
       styles={{
@@ -10,8 +11,8 @@ const AppGlobalStyles = (): null => {
           padding: 0,
         },
         html: {
-          '-webkit-font-smoothing': 'antialiased',
-          '-moz-osx-font-smoothing': 'grayscale',
+          WebkitFontSmoothing: 'antialiased',
+          MozOsxFontSmoothing: 'grayscale',
           height: '100%',
           width: '100%',
           fontFamily: 'Roboto, Helvetica, Arial, sans-serif',
