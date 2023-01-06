@@ -28,7 +28,7 @@ const useStyles = makeStyles(() =>
       "footer footer"`,
       gridTemplateColumns: 'minmax(200px, 20%) 1fr',
       gridTemplateRows: '3rem 1fr 3rem',
-      gridGap: '1rem',
+      gap: '1rem',
 
       '&> *': {
         backgroundColor: areaColor,
