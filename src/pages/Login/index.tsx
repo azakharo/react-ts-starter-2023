@@ -53,46 +53,47 @@ const Login = () => {
             justifyContent: 'center',
           }}
         >
-          <form noValidate onSubmit={handleSubmit}>
-            <Box
-              sx={{
-                display: 'flex',
-                flexDirection: 'column',
-                gap: 2,
-              }}
-            >
-              <Typography variant="h4" color="textPrimary">
-                Welcome to the test
-              </Typography>
+          <Box
+            sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: 2,
+            }}
+            component="form"
+            noValidate
+            onSubmit={handleSubmit}
+          >
+            <Typography variant="h4" color="textPrimary">
+              Welcome to the test
+            </Typography>
 
-              <TextField label="Username" name="username" />
+            <TextField label="Username" name="username" />
 
-              <TextField label="Password" name="password" type="password" />
+            <TextField label="Password" name="password" type="password" />
 
-              {authError && <FormHelperText error>{authError}</FormHelperText>}
+            {authError && <FormHelperText error>{authError}</FormHelperText>}
 
-              <Box pt={2}>
-                <Button
-                  color="secondary"
-                  disabled={isSubmitting}
-                  size="large"
-                  type="submit"
-                  variant="contained"
-                >
-                  Login
-                </Button>
-              </Box>
-
-              <Typography
-                align="center"
-                variant="subtitle2"
-                color="textSecondary"
+            <Box pt={2}>
+              <Button
+                color="secondary"
+                disabled={isSubmitting}
+                size="large"
+                type="submit"
+                variant="contained"
               >
-                For login use &quot;eve.holt@reqres.in&quot; username with any
-                password
-              </Typography>
+                Login
+              </Button>
             </Box>
-          </form>
+
+            <Typography
+              align="center"
+              variant="subtitle2"
+              color="textSecondary"
+            >
+              For login use &quot;eve.holt@reqres.in&quot; username with any
+              password
+            </Typography>
+          </Box>
         </Box>
       )}
     </Formik>
