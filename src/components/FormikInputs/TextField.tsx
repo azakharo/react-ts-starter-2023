@@ -1,7 +1,7 @@
 import React, {memo} from 'react';
-import {useFormikContext, getIn} from 'formik';
+import {getIn, useFormikContext} from 'formik';
 
-import BaseTextField from 'src/components/TextField';
+import BaseTextField from '../TextField';
 
 interface Props {
   name: string;

@@ -19,6 +19,7 @@ module.exports = {
   "plugins": [
     "@typescript-eslint",
     "eslint-comments",
+    "simple-import-sort",
     "import",
     "jest",
     "jsx-a11y",
@@ -56,22 +57,11 @@ module.exports = {
     "import/no-extraneous-dependencies": "off",
     // TODO set off only for TS and JS modules
     "import/extensions": "off",
-    "import/order": [
-      "error",
-      {
-        "groups": [
-          "builtin",
-          "external",
-          "internal",
-          "unknown",
-          "parent",
-          "sibling",
-          "index",
-          "object",
-          "type"
-        ]
-      }
-    ],
+    "import/first": "error",
+    "import/newline-after-import": "error",
+    "import/no-duplicates": "error",
+    "simple-import-sort/imports": "error",
+    "simple-import-sort/exports": "error",
 
     // Too restrictive: https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/destructuring-assignment.md
     "react/destructuring-assignment": "off",
@@ -158,5 +148,34 @@ module.exports = {
       }
     },
     /////////////////////////////////////////////
+    // override "simple-import-sort" config
+    {
+      "files": ["*.js", "*.jsx", "*.ts", "*.tsx"],
+      "rules": {
+        "simple-import-sort/imports": [
+          "error",
+          {
+            "groups": [
+              // Packages `react` related packages come first.
+              ["^react", "^@?\\w"],
+              // Internal packages.
+              [
+                "^src(/.*|$)",
+                // Parent imports. Put `..` last.
+                "^\\.\\.(?!/?$)", "^\\.\\./?$",
+                // Other relative imports. Put same-folder imports and `.` last.
+                "^\\./(?=.*/)(?!/?$)", "^\\.(?!/?$)", "^\\./?$",
+                // Images
+                "^(IMAGES)(/.*|$)"
+              ],
+              // Side effect imports.
+              ["^\\u0000"],
+              // Style imports.
+              ["^.+\\.?(css)$"]
+            ]
+          }
+        ]
+      }
+    }
   ]
 };

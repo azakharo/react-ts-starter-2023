@@ -1,10 +1,10 @@
 import React, {FC, memo} from 'react';
-import {Routes, Route, Navigate} from 'react-router-dom';
+import {Navigate, Route, Routes} from 'react-router-dom';
 
 import {ROUTE__LOGIN, ROUTE__MAIN} from 'src/constants/routes';
+import useAuth from 'src/hooks/useAuth';
 import Login from 'src/pages/Login';
 import Main from 'src/pages/Main';
-import useAuth from 'src/hooks/useAuth';
 
 const AppRoutes: FC = () => {
   const {isAuthenticated} = useAuth();

@@ -1,10 +1,10 @@
 import React, {memo} from 'react';
 import {BrowserRouter} from 'react-router-dom';
-import {ThemeProvider, createTheme} from '@mui/material/styles';
+import {createTheme, ThemeProvider} from '@mui/material/styles';
 
-import {AuthProvider} from 'src/contexts/AuthContext';
 import AppGlobalStyles from 'src/AppGlobalStyles';
 import AppRoutes from 'src/AppRoutes';
+import {AuthProvider} from 'src/contexts/AuthContext';
 
 const theme = createTheme();
 

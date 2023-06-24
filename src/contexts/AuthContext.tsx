@@ -1,25 +1,25 @@
 import React, {
   createContext,
-  ReactNode,
-  useEffect,
-  useReducer,
   FC,
+  ReactNode,
   useCallback,
+  useEffect,
   useMemo,
+  useReducer,
 } from 'react';
-import {useNavigate, useLocation} from 'react-router-dom';
+import {useLocation, useNavigate} from 'react-router-dom';
 
+import {ROUTE__LOGIN, ROUTE__MAIN} from 'src/constants/routes';
 import {
   getAuthToken as getAuthTokenFromLocalStorage,
-  setAuthToken as putAuthTokenToLocalStorage,
-  remAuthToken as remAuthTokenFromLocalStorage,
   getUserId as getUserIdFromLocalStorage,
-  setUserId as putUserIdToLocalStorage,
+  remAuthToken as remAuthTokenFromLocalStorage,
   remUserId as remUserIdFromLocalStorage,
+  setAuthToken as putAuthTokenToLocalStorage,
+  setUserId as putUserIdToLocalStorage,
 } from 'src/helpers/localStorage';
-import UserLoggedIn from 'src/types/UserLoggedIn';
-import {ROUTE__LOGIN, ROUTE__MAIN} from 'src/constants/routes';
 import ApiService from 'src/services/ApiService';
+import UserLoggedIn from 'src/types/UserLoggedIn';
 
 export interface AuthState {
   isAuthenticated: boolean;

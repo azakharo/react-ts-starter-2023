@@ -1,8 +1,8 @@
 import React, {memo} from 'react';
 import {Box, Button} from '@mui/material';
 
-import errorImg from 'IMAGES/error-page-icon.png';
 import useAuth from 'src/hooks/useAuth';
+import errorImg from 'IMAGES/error-page-icon.png';
 
 const areaColor = '#e2deed';
 

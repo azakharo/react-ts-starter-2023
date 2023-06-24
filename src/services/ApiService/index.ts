@@ -1,4 +1,4 @@
-import axios, {CancelTokenSource, AxiosError} from 'axios';
+import axios, {AxiosError, CancelTokenSource} from 'axios';
 
 const BASE_URL = 'https://reqres.in';
 

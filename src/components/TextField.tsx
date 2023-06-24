@@ -1,4 +1,4 @@
-import React, {FocusEvent, ChangeEvent, memo, useMemo} from 'react';
+import React, {ChangeEvent, FocusEvent, memo, useMemo} from 'react';
 import {TextField as BaseTextField} from '@mui/material';
 
 export enum InputType {
