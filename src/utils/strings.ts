@@ -8,9 +8,9 @@ export const getNameInitials = (name: string): string => {
   let initials = '';
   initials =
     parts.length > 1
-      ? parts[0].charAt(0) +
+      ? parts[0]!.charAt(0) +
         spaceForLigature +
-        parts[parts.length - 1].charAt(0)
+        parts[parts.length - 1]!.charAt(0)
       : name.slice(0, 2);
   return initials.toUpperCase();
 };

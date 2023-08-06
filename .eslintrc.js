@@ -111,6 +111,7 @@ module.exports = {
     // Difficult to write redux slices with it
     "unicorn/consistent-function-scoping": "off",
     "unicorn/prefer-node-protocol": "off",
+    "unicorn/expiring-todo-comments": "off",
 
     // Enable some rules for async JS
     "no-promise-executor-return": "error",
