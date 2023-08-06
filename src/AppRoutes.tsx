@@ -1,4 +1,4 @@
-import React, {FC, memo} from 'react';
+import {FC, memo} from 'react';
 import {Navigate, Route, Routes} from 'react-router-dom';
 
 import {ROUTE__LOGIN, ROUTE__MAIN} from 'src/constants/routes';

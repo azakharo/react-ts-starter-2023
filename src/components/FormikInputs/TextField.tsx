@@ -1,4 +1,4 @@
-import React, {memo} from 'react';
+import {memo} from 'react';
 import {getIn, useFormikContext} from 'formik';
 
 import BaseTextField from '../TextField';

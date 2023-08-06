@@ -1,4 +1,4 @@
-import React, {memo} from 'react';
+import {memo} from 'react';
 import {BrowserRouter} from 'react-router-dom';
 import {createTheme, ThemeProvider} from '@mui/material/styles';
 

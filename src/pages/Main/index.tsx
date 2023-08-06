@@ -1,4 +1,4 @@
-import React, {memo} from 'react';
+import {memo} from 'react';
 import {Box, Button} from '@mui/material';
 
 import useAuth from 'src/hooks/useAuth';
