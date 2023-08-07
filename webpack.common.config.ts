@@ -40,6 +40,7 @@ const config: Configuration = {
       favicon: path.join(imagesDir, 'favicon.ico'),
     }),
     new ForkTsCheckerWebpackPlugin({
+      // blocks the compilation if any errors exist
       async: false,
     }),
     new ESLintPlugin({
