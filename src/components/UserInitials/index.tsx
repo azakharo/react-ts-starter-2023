@@ -6,12 +6,17 @@ import {getNameInitials} from 'src/utils/strings';
 interface Props {
   name: string;
   size?: number;
+  bgColor?: string;
 }
 
-const UserInitials: FC<Props> = ({name, size}) => {
+const UserInitials: FC<Props> = ({name, size, bgColor = '#00ff',}) => {
   const initials = getNameInitials(name);
 
-  return <ColoredCircle size={size}>{initials}</ColoredCircle>;
+  return (
+    <ColoredCircle size={size} bgColor={bgColor}>
+      {initials}
+    </ColoredCircle>
+  );
 };
 
 export default memo(UserInitials);
