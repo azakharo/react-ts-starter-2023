@@ -205,8 +205,6 @@ export const AuthProvider: FC<Props> = ({children}) => {
             navigate(ROUTE__MAIN);
           }
         } else {
-          redirectToLogin();
-
           dispatch({
             type: ACTION__APP_INIT,
             payload: null,
