@@ -24,6 +24,10 @@ type Story = StoryObj<typeof meta>;
 
 // More on writing stories with args: https://storybook.js.org/docs/react/writing-stories/args
 export const Default: Story = {
+  // We do not need to provide value and onChange.
+  // Storybook handles those prop on its own.
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
   args: {},
 };
 
