@@ -1,7 +1,9 @@
-import {memo} from 'react';
+import {memo, useEffect, useState} from 'react';
 import {Box, Button} from '@mui/material';
 
+import {getUsers} from 'src/api/users';
 import useAuth from 'src/hooks/useAuth';
+import User from 'src/types/users/User';
 import errorImg from 'IMAGES/error-page-icon.png';
 
 const areaColor = '#e2deed';
@@ -16,8 +18,19 @@ const asideMainCommonStyles = {
 };
 
 const Main = () => {
-  const {logout, user} = useAuth();
-  const username = user ? user.name : '';
+  const {logout, user: currentUser} = useAuth();
+  const username = currentUser ? currentUser.name : '';
+
+  const [users, setUsers] = useState<User[]>([]);
+
+  const getUsersFromApi = async () => {
+    const usersFromApi = await getUsers();
+    setUsers(usersFromApi);
+  };
+
+  useEffect(() => {
+    void getUsersFromApi();
+  }, []);
 
   return (
     <Box
@@ -92,7 +105,25 @@ const Main = () => {
           ...asideMainCommonStyles,
         }}
       >
-        Main
+        <Box display="flex" flexWrap="wrap" gap={2}>
+          {Array.isArray(users) &&
+            users.length > 0 &&
+            users.map(user => {
+              return (
+                <div key={user.id}>
+                  <p>
+                    <strong>{user.first_name}</strong>
+                  </p>
+                  <div>{user.email}</div>
+                  <img
+                    key={user.avatar}
+                    src={user.avatar}
+                    alt={user.first_name}
+                  />
+                </div>
+              );
+            })}
+        </Box>
       </Box>
       <Box
         component="footer"
