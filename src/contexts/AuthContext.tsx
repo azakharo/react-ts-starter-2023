@@ -9,6 +9,7 @@ import {
 } from 'react';
 import {useLocation, useNavigate} from 'react-router-dom';
 
+import {init as apiInit, login as apiLogin, uninit as apiUninit} from 'src/api';
 import {ROUTE__LOGIN, ROUTE__MAIN} from 'src/constants/routes';
 import {
   getAuthToken as getAuthTokenFromLocalStorage,
@@ -18,7 +19,6 @@ import {
   setAuthToken as putAuthTokenToLocalStorage,
   setUserId as putUserIdToLocalStorage,
 } from 'src/helpers/localStorage';
-import ApiService from 'src/services/ApiService';
 import UserLoggedIn from 'src/types/UserLoggedIn';
 
 export interface AuthState {
@@ -124,7 +124,7 @@ export const AuthProvider: FC<Props> = ({children}) => {
 
   const login = useCallback(
     async (username: string, password: string, redirect = true) => {
-      const {id, name, token} = await ApiService.login(username, password);
+      const {id, name, token} = await apiLogin(username, password);
 
       setSession(token, id);
 
@@ -173,7 +173,7 @@ export const AuthProvider: FC<Props> = ({children}) => {
 
   useEffect(() => {
     const initApp = () => {
-      ApiService.init(logout);
+      apiInit(logout);
 
       const redirectToLogin = () => {
         navigate(ROUTE__LOGIN, {
@@ -227,7 +227,7 @@ export const AuthProvider: FC<Props> = ({children}) => {
 
     // Call Api.uninit on unmount
     // eslint-disable-next-line @typescript-eslint/unbound-method
-    return ApiService.uninit;
+    return apiUninit;
     // Have to run this effect only once on the app startup
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
