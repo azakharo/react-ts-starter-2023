@@ -22,7 +22,7 @@ Usage: create fast prototypes, solve test tasks.
 This starter uses Webpack. So, the dev server starts slowly compared to Vite.   
 The same is true also for code changes and live-reloading.   
 If you'd like to try the same starter, but with Vite, see the following link:    
-`https://github.com/azakharo/react-ts-vite-starter`
+[react-ts-vite-starter](https://github.com/azakharo/react-ts-vite-starter)
 
 ## Quick start
 
@@ -38,7 +38,7 @@ To run in the development mode with hot module reloading:
 npm start
 ```
 
-That command opens `http://localhost:4000` page in your browser.
+That command opens http://localhost:4000 page in your browser.
 
 
 To create a production build:
